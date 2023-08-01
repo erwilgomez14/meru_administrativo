@@ -101,14 +101,14 @@
             <div class="row">
                 <div class="col-md-4 login-sec">
                     <h2 class="text-center">MERÚ Administrativo</h2>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('loginpost') }}">
                         @csrf
 
                         <div class="form-group">
-                            <label for="email">{{ __('E-Mail Address') }}</label>
-                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autofocus>
+                            <label for="username">{{ __('E-Mail Address') }}</label>
+                            <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" autofocus>
 
-                            @error('email')
+                            @error('username')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

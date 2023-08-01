@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -10,12 +11,11 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Notifications\ResetPasswordNotification;
 use Spatie\Permission\Traits\HasRoles;
-use App\Models\Administrativo\Meru_Administrativo\Configuracion\Usuario;
 
-class User extends Authenticatable
+class Usuario extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable,HasRoles;
-
-    protected $table = 'usuarios';
-
+    protected $primaryKey = 'idusuario';
+    protected $connection = 'rrhh';
+    protected $table = 'acceso.usuarios';
 }

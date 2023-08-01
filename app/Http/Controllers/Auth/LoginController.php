@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\Administrativo\Meru_Administrativo\Configuracion\RegistroControl;
+use App\Models\User;
+use App\Models\Usuario;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -23,7 +26,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+   //use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -65,4 +68,27 @@ class LoginController extends Controller
                     ? new JsonResponse([], 204)
                     : redirect()->intended($this->redirectPath());
     }
+    public function login(Request $request)
+    {
+        $user = Usuario::where('uid', $request->username)->first();
+    
+        if ($user && $user->clave === md5($request->password)) {
+            $userad = User::where('usuario', $user->uid)->first();
+    
+            if ($userad) {
+                Auth::login($userad);
+                return redirect()->route('home');
+            }else{
+                dd('Usuario no registrado');
+            }
+        }else{
+            dd('Usuario no activo');
+        }
+    }
+
+    public function logout(Request $request)
+{
+    Auth::logout();
+    return redirect('/');
+}
 }

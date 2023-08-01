@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,11 +14,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// dd(Usuario::first()->toArray());
+//dd(User::first()->toArray());
 Route::get('/', function () {
-    return view('auth.login');
+    return redirect()->route('login');
 });
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
 
-Auth::routes();
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/');
+})->name('logout');
+
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::post('/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('loginpost');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
