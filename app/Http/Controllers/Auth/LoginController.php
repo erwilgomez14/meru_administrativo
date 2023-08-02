@@ -26,7 +26,7 @@ class LoginController extends Controller
     |
     */
 
-   //use AuthenticatesUsers;
+    //use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -65,30 +65,44 @@ class LoginController extends Controller
         }
 
         return $request->wantsJson()
-                    ? new JsonResponse([], 204)
-                    : redirect()->intended($this->redirectPath());
+            ? new JsonResponse([], 204)
+            : redirect()->intended($this->redirectPath());
     }
     public function login(Request $request)
     {
+        $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
         $user = Usuario::where('uid', $request->username)->first();
-    
-        if ($user && $user->clave === md5($request->password)) {
-            $userad = User::where('usuario', $user->uid)->first();
-    
-            if ($userad) {
-                Auth::login($userad);
-                return redirect()->route('home');
-            }else{
-                dd('Usuario no registrado');
+
+        if (!$user) {
+            // return redirect()->route('login')->with('message', 'Usuario no activo en recursos humanos');
+            return redirect()->route('login')->with('alert', 'Credenciales no encontradas');
+        }
+
+        if ($user && $user->idstatus === 1) {
+            if ($user->clave === md5($request->password)) {
+                $userad = User::where('usuario', $user->uid)->first();
+
+                if ($userad && $userad->status === 1) {
+                    Auth::login($userad);
+                    return redirect()->route('home');
+                } else if ($userad && $userad->status !== 1) {
+                    return redirect()->route('login')->with('alert', 'Usuario inactivo');
+                } else {
+                    return redirect()->route('login')->with('alert', 'Contacte con su administrador de sistemas');
+                }
             }
-        }else{
-            dd('Usuario no activo');
+        } else {
+            return redirect()->route('login')->with('alert', 'Usuario no activo en recursos humanos');
         }
     }
 
     public function logout(Request $request)
-{
-    Auth::logout();
-    return redirect('/');
-}
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 }
