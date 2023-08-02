@@ -1,21 +1,25 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ config('app.locale', 'es') }}">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../../assets/img/favicon.png">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>Merú Administrativo</title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+
+ <!-- Icono app -->
+ <link rel="icon" href="{{ asset('img/favicon.png') }}">
+
+ <!-- Title app -->
+ <title>Merú Administrativo</title>
  
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" type="text/css" href="{{asset('assetsLogin/css/css.css')}}" />
   <!-- CSS Files -->
-  <link href="{{asset('assets/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet" />
+  
+  <link href="{{asset('assetsLogin/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assets/demo/demo.css')}}" rel="stylesheet" />
+  <link href="{{asset('assetsLogin/demo/demo.css')}}" rel="stylesheet" />
 
 </head>
 
@@ -25,9 +29,9 @@
     <div class="container">
       <div class="navbar-wrapper">
         <a href="{{ route('home') }}" class="p-0">
-            <img class="d-inline" src="{{ asset('assets/img/favicon.ico') }}" alt="logo"
-                class="logo" style="filter: grayscale(50%) brightness(100%); width: 25px;">
-            <img class="d-inline" src="{{ asset('assets/img/logo.png') }}" alt=""
+            <img class="d-inline" src="{{ asset('assetsLogin/img/favicon.ico') }}" alt="logo"
+                class="logo" style="filter: grayscale(100%) brightness(800%); width: 25px;">
+            <img class="d-inline" src="{{ asset('assetsLogin/img/logo.png') }}" alt=""
                 class="img-fluid"
                 style="max-width: 100px;margin-top: 0.5rem;filter: grayscale(50%) brightness(200%);">
         </a>
@@ -37,41 +41,66 @@
   <!-- End Navbar -->
 
   <div class="wrapper wrapper-full-page">
-    <div class="page-header login-page header-filter" filter-color="black" style="background-image: url('../../assets/img/fondohb.png'); background-size: cover; background-position: top center;">
-      <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
+  <div class="page-header login-page header-filter" filter-color="black" style="background-size: cover; background-position: top center;">
+      <video id="videoPlayer" src="{{ asset('assetsLogin/video/video.mp4')}}"
+      style="position: absolute;display:flex; width: 100%; height: auto;" autoplay loop muted controls></video>
       <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="" action="">
+          <div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
+            <form  class="form" method="POST" action="{{ route('loginpost') }}">
+              @csrf
               <div class="card card-login card-hidden">
-                <div class="card-header card-header-rose text-center" style="background: #086493">
+                <div class="card-header card-header-rose text-center" 
+                style="background: linear-gradient(180deg, rgb(0, 97, 155) 12%, rgb(27, 123, 172) 47%, rgb(74, 162, 204) 84%);">
                   <h4 class="card-title">Merú Administrativo</h4>
                 </div>
                 <div class="card-body ">
                   <p class="card-description text-center">Iniciar Sesion</p>
+                  @if (session('alert'))
+                  <div class="alert alert-danger d-flex justify-content-center align-items-center">
+                      {{ session('alert') }}
+                  </div>
+              @endif
                   <span class="bmd-form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <i class="material-icons">face</i>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                          </svg>
                         </span>
                       </div>
-                      <input type="text" class="form-control" placeholder="Usuario....">
+                      <input type="text" name="username" id="username" class="form-control @error('username') is-invalid @enderror" value="{{ old('username') }}" placeholder="Usuario....">
+                      @error('username')
+                      <span class="invalid-feedback" style="margin-left: 3rem;"  role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                     </div>
                   </span>
                   <span class="bmd-form-group">
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text">
-                          <i class="material-icons">lock_outline</i>
+                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+                            <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                          </svg>
                         </span>
                       </div>
-                      <input type="password" name="password" class="form-control" placeholder="Contraseña....">
+                      <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Contraseña....">
+                      @error('password')
+                      <span class="invalid-feedback"  style="margin-left: 3rem;" role="alert">
+                          <strong>{{ $message }}</strong>
+                      </span>
+                  @enderror
                     </div>
                   </span>
                 </div>
                 <div class="card-footer justify-content-center">
-                  <a type="submit" class="btn btn-rose btn-link btn-lg">Acceder</a>
+                  <button type="submit" class="btn btn-rose btn-link btn-lg">
+                    {{ __('Acceder') }}
+                </button>
                 </div>
               </div>
             </form>
@@ -83,24 +112,13 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="https://www.creative-tim.com">
-                  Creative Tim
-                </a>
+                <a href="http://172.30.8.56/intranet/" target="_blank">Intranet HidroBolívar</a>
               </li>
               <li>
-                <a href="https://creative-tim.com/presentation">
-                  About Us
-                </a>
+                <a href="http://172.30.8.61:8080/meru_rrhh/administracion/autentificacion/login" target="_blank">Merú Recursos Humanos</a>
               </li>
               <li>
-                <a href="http://blog.creative-tim.com">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license">
-                  Licenses
-                </a>
+                <a href="http://172.30.9.18/hidrosgc/" target="_blank">HidroSGC</a>
               </li>
             </ul>
           </nav>
@@ -109,15 +127,15 @@
             <script>
               document.write(new Date().getFullYear())
             </script>, Copyright HidroBolívar. Todos los derechos reservados. <br>
-            <span>Diseñado por la Gerencia de Tecnología e Información. </span>
+            <span style="font-size: 0.9rem;">Diseñado por la Gerencia de Tecnología e Información. </span>
           </div>
         </div>
       </footer>
     </div>
   </div>
   <!--   Core JS Files   -->
-  <script src="../../assets/js/core/jquery.min.js"></script>
-  <script src="../../assets/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+  <script src="../../assetsLogin/js/core/jquery.min.js"></script>
+  <script src="../../assetsLogin/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
   <script>
     $(document).ready(function() {
       md.checkFullPageBackgroundImage();

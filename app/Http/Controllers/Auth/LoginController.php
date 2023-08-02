@@ -86,10 +86,10 @@ class LoginController extends Controller
             if ($user->clave === md5($request->password)) {
                 $userad = User::where('usuario', $user->uid)->first();
 
-                if ($userad && $userad->status === 1) {
+                if ($userad && $userad->status === '1') {
                     Auth::login($userad);
                     return redirect()->route('home');
-                } else if ($userad && $userad->status !== 1) {
+                } else if ($userad && $userad->status !== '1') {
                     return redirect()->route('login')->with('alert', 'Usuario inactivo');
                 } else {
                     return redirect()->route('login')->with('alert', 'Contacte con su administrador de sistemas');
