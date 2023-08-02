@@ -94,7 +94,9 @@ class LoginController extends Controller
                 } else {
                     return redirect()->route('login')->with('alert', 'Contacte con su administrador de sistemas');
                 }
-            }
+            }else {
+                return redirect()->route('login')->with('alert', 'Contraseña Inconrrecta');
+                }
         } else {
             return redirect()->route('login')->with('alert', 'Usuario no activo en recursos humanos');
         }
