@@ -8,6 +8,6 @@ class IntermediateController extends Controller
 {
     public function showLoader()
     {
-        return view('intermediate');
+        return view('auth.loader');
     }
 }
