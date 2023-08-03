@@ -86,6 +86,35 @@
       @include('auth.login.footer')
     </div>
   </div>
+
+  <script>
+    $(document).ready(function() {
+    $('.form').on('submit', function(e) {
+        // Prevenir la acción por defecto del formulario (la redirección)
+        e.preventDefault();
+
+        // Mostrar el loader y el video
+        $('#video-loader').show();
+        $('#loader-video')[0].play();
+
+        // Hacer la petición al servidor
+        // Aquí necesitas adaptarlo para tu situación específica
+        $.post({
+            url: '{{ route('loginpost') }}',
+            data: $(this).serialize(),
+            success: function() {
+                // Si la petición fue exitosa, el video se está reproduciendo
+                // Cuando el video termine, se disparará el evento 'ended'
+            },
+            error: function() {
+                // Si hubo un error, puedes ocultar el loader y mostrar un mensaje
+                $('#video-loader').hide();
+                // Mostrar el mensaje de error
+            }
+        });
+    });
+});
+  </script>
   @endsection
 {{-- <!doctype html>
 <html lang="{{ config('app.locale', 'es') }}">

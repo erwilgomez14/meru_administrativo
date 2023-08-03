@@ -88,7 +88,7 @@ class LoginController extends Controller
 
                 if ($userad && $userad->status === '1') {
                     Auth::login($userad);
-                    return redirect()->route('home');
+                    return redirect()->route('intermediate');
                 } else if ($userad && $userad->status !== '1') {
                     return redirect()->route('login')->with('alert', 'Usuario inactivo');
                 } else {
