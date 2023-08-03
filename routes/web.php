@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 Route::get('/login', function () {
     return view('auth.login');
-})->name('login');
+})->middleware('guest')->name('login');
 
 Route::post('/logout', function () {
     Auth::logout();
