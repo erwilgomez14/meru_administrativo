@@ -1,13 +1,12 @@
   <!-- Vendor JS Files -->
-  @yield('scripts')
-  <script src="{{ asset('styles/stylesHome/vendor/apexcharts/apexcharts.min.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/chart.js/chart.umd.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/echarts/echarts.min.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/quill/quill.min.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/simple-datatables/simple-datatables.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/tinymce/tinymce.min.js') }}"></script>
-  <script src="{{ asset('styles/stylesHome/vendor/php-email-form/validate.js') }}"></script>
-
-  <!-- Template Main JS File -->
-  <script src="{{ asset('styles/stylesHome/js/main.js') }}"></script>
+  <script src="../../assetsLogin/js/core/jquery.min.js"></script>
+  <script src="../../assetsLogin/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
+  <script>
+    $(document).ready(function() {
+      md.checkFullPageBackgroundImage();
+      setTimeout(function() {
+        // after 1000 ms we add the class animated to the login/register card
+        $('.card').removeClass('card-hidden');
+      }, 700);
+    });
+  </script>

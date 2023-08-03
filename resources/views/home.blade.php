@@ -1,5 +1,6 @@
-@extends('layouts.aplicacion')
 
+@extends('layouts2.sidebar')
+{{-- 
 @section('content')		  	
 
 	<div class="container-fluid mt-2">
@@ -9,4 +10,4 @@
 
 @section('sidebar')
 	@include('layouts.sidebar')
-@endsection
+@endsection --}}

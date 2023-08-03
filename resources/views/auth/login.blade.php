@@ -1,29 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ config('app.locale', 'es') }}">
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
- <!-- Icono app -->
- <link rel="icon" href="{{ asset('img/favicon.png') }}">
-
- <!-- Title app -->
- <title>Merú Administrativo</title>
- 
-  <!--     Fonts and icons     -->
-  <link rel="stylesheet" type="text/css" href="{{asset('assetsLogin/css/css.css')}}" />
-  <!-- CSS Files -->
-  
-  <link href="{{asset('assetsLogin/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet" />
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="{{asset('assetsLogin/demo/demo.css')}}" rel="stylesheet" />
-
-</head>
-
-<body class="off-canvas-sidebar">
+@extends('auth.login.page')
+@section('content')
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
@@ -43,7 +19,7 @@
   <div class="wrapper wrapper-full-page">
   <div class="page-header login-page header-filter" filter-color="black" style="background-size: cover; background-position: top center;">
       <video id="videoPlayer" src="{{ asset('assetsLogin/video/video.mp4')}}"
-      style="position: absolute;display:flex; width: 100%; height: auto;" autoplay loop muted controls></video>
+      style="position: absolute;display:flex; width: 100%; height: auto;" autoplay loop muted></video>
       <div class="container">
         <div class="row">
           <div class="col-lg-5 col-md-6 col-sm-8 ml-auto mr-auto">
@@ -107,48 +83,10 @@
           </div>
         </div>
       </div>
-      <footer class="footer">
-        <div class="container">
-          <nav class="float-left">
-            <ul>
-              <li>
-                <a href="http://172.30.8.56/intranet/" target="_blank">Intranet HidroBolívar</a>
-              </li>
-              <li>
-                <a href="http://172.30.8.61:8080/meru_rrhh/administracion/autentificacion/login" target="_blank">Merú Recursos Humanos</a>
-              </li>
-              <li>
-                <a href="http://172.30.9.18/hidrosgc/" target="_blank">HidroSGC</a>
-              </li>
-            </ul>
-          </nav>
-          <div class="copyright float-right">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, Copyright HidroBolívar. Todos los derechos reservados. <br>
-            <span style="font-size: 0.9rem;">Diseñado por la Gerencia de Tecnología e Información. </span>
-          </div>
-        </div>
-      </footer>
+      @include('auth.login.footer')
     </div>
   </div>
-  <!--   Core JS Files   -->
-  <script src="../../assetsLogin/js/core/jquery.min.js"></script>
-  <script src="../../assetsLogin/js/material-dashboard.min.js?v=2.1.0" type="text/javascript"></script>
-  <script>
-    $(document).ready(function() {
-      md.checkFullPageBackgroundImage();
-      setTimeout(function() {
-        // after 1000 ms we add the class animated to the login/register card
-        $('.card').removeClass('card-hidden');
-      }, 700);
-    });
-  </script>
-</body>
-
-</html>
-
+  @endsection
 {{-- <!doctype html>
 <html lang="{{ config('app.locale', 'es') }}">
 

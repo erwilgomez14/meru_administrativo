@@ -1,30 +1,24 @@
+<!DOCTYPE html>
+<html lang="{{ config('app.locale', 'es') }}">
+
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    @can('isAdmin')
-        <title>Panel de Administrador</title>
-    @endcan
-    @can('isPrensa')
-        <title>Panel de Prensa</title>
-    @endcan
-    <meta content="" name="description">
-    <meta content="" name="keywords">
-    <!-- Google Fonts -->
-    <link href="{{ asset('styles/stylesHome/css/fontspanel.css') }}" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('styles/stylesHome/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/quill/quill.snow.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
-    <link href="{{ asset('styles/stylesHome/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+ <!-- Icono app -->
+ <link rel="icon" href="{{ asset('img/favicon.png') }}">
 
-
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('styles/stylesHome/css/style.css') }}" rel="stylesheet">
-    <!-- Favicons -->
-    <link href="{{ asset('styles/stylesPanel/img/favicon.ico') }}" rel="icon">
+ <!-- Title app -->
+ <title>Merú Administrativo</title>
+ 
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="{{asset('assetsLogin/css/css.css')}}" />
+  <!-- CSS Files -->
+  
+  <link href="{{asset('assetsLogin/css/material-dashboard.min.css?v=2.1.0')}}" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="{{asset('assetsLogin/demo/demo.css')}}" rel="stylesheet" />
 
 </head>
