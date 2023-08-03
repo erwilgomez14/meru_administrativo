@@ -68,6 +68,7 @@ class LoginController extends Controller
             ? new JsonResponse([], 204)
             : redirect()->intended($this->redirectPath());
     }
+
     public function login(Request $request)
     {
         $request->validate([
@@ -88,6 +89,13 @@ class LoginController extends Controller
 
                 if ($userad && $userad->status === '1') {
                     Auth::login($userad);
+
+                    if (RegistroControl::periodosAbiertos()->count() == 1) {
+                        session(['ano_pro' => RegistroControl::periodoActual()]);
+                    } else {
+                        session(['ano_pro' => '']);
+                    }
+
                     return redirect()->route('home');
                 } else if ($userad && $userad->status !== '1') {
                     return redirect()->route('login')->with('alert', 'Usuario inactivo');
