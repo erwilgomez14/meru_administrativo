@@ -18,4 +18,11 @@ class User extends Authenticatable
 
     protected $table = 'usuarios';
 
+    public function menus()
+    {
+        // return $this->belongsToMany('App\Models\Menu');
+        return $this->belongsToMany(Menu::class, 'usuario_menu_rol', 'id_usuario', 'id_menu');
+
+    }
+
 }

@@ -26,6 +26,7 @@ class AppServiceProvider extends ServiceProvider
 	 */
 	public function boot()
 	{
+		//dd(RegistroControl::periodosAbiertos());
 		//
 		// View::composer (app, Menu, periodos) - Siasm
 		View::composer(['home'] , function ($view) {

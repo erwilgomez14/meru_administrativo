@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 
 class Menu extends Model
@@ -23,19 +24,41 @@ class Menu extends Model
 
     public function optionsMenu($aplicacion)
     {
-        return $this->whereIdAplicacion($aplicacion)
-            ->where('activo', 1)
-            ->orderby('padre')
-            ->orderby('orden')
-            ->orderby('nombre')
-            ->get()
-            ->toArray();
+        $user = Auth::user()->menus()
+        //->except('pivot')
+        ->orderby('padre')
+        ->orderby('orden')
+        ->orderby('nombre')
+        ->get()
+        ->toArray();
+        // foreach ($user as $u){
+        //     dump($u['nombre']);
+        // }
+        //dd($user);
+        // dd($this->whereIdAplicacion($aplicacion)
+        // ->where('activo', 1)
+        // ->orderby('padre')
+        // ->orderby('orden')
+        // ->orderby('nombre')
+        // ->get()
+        // ->toArray());
+
+        // return $this->whereIdAplicacion($aplicacion)
+        //     ->where('activo', 1)
+        //     ->orderby('padre')
+        //     ->orderby('orden')
+        //     ->orderby('nombre')
+        //     ->get()
+        //     ->toArray();
+        return $user;
     }
 
     public static function menus($aplicacion)
     {
+        
         $menus = new Menu();
         $data = $menus->optionsMenu($aplicacion);
+        //dd($data);
         $menuAll = [];
         foreach ($data as $line) {
             $item = [ array_merge($line, ['submenu' => $menus->getChildren($data, $line) ]) ];
