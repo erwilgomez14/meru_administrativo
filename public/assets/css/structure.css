@@ -193,20 +193,20 @@ code {
   max-width: 58.333333%;
   margin-left: 80px; }
 
-/* 
+/*
 =====================
     Navigation Bar
 =====================
 */
 .header-container {
   z-index: 1030;
-  border-bottom: 1px solid #0e1726; }
+  border-bottom: 1px solid #fff; }
   .header-container .navbar {
     padding: 4px 0; }
 
 .navbar {
   padding: 0;
-  background: #0e1726; }
+  background: linear-gradient(140deg, rgb(0, 97, 155) 12%, rgb(27, 123, 172) 47%, rgb(74, 162, 204) 84%); }
   .navbar .theme-brand {
     padding: 0.9px 0 0.9px 27px !important;
     border-radius: 6px 6px 0 0;
@@ -218,7 +218,7 @@ code {
         height: 34px;
         border-radius: 5px; }
     .navbar .theme-brand li.theme-text {
-      margin-right: 47px; }
+      margin-right: 0px; }
       .navbar .theme-brand li.theme-text a {
         font-size: 24px !important;
         color: #e0e6ed !important;
@@ -543,7 +543,7 @@ code {
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item.active, .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item:active {
       background-color: transparent; }
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item:not(:last-child) {
-      border-bottom: 1px solid #ebedf2; }
+      border-bottom: 1px solid #fff; }
     .navbar .navbar-item .nav-item.user-profile-dropdown .dropdown-menu .dropdown-item svg {
       width: 21px;
       margin-right: 16px;
@@ -551,7 +551,7 @@ code {
       color: #1b55e2;
       fill: rgba(0, 23, 55, 0.08); }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -675,7 +675,7 @@ code {
   .page-header {
     display: block; } }
 
-/* 
+/*
 ===============
     Sidebar
 ===============
@@ -951,7 +951,7 @@ code {
 #sidebar ul.menu-categories .ps__rail-y {
   right: -4px !important; }
 
-/*  
+/*
     ======================
         Footer-wrapper
     ======================
@@ -985,7 +985,7 @@ code {
   height: 15px;
   vertical-align: text-top; }
 
-/*  
+/*
     ======================
         MEDIA QUERIES
     ======================
