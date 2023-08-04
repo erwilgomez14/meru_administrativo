@@ -53,49 +53,45 @@
         </ul>
     </li>
 @endif --}}
+
 @if ($item['submenu'] == [])
     <li>
-        <a href="{{ url($item['url_destino']) }}">
+        <a href="{{ url($item['url_destino']) }}" class="dropdown-item">
             <i class="nav-icon fas {{ $item['icono'] }}"></i>
-            <p>
-                {{ $item['nombre'] }}
-            </p>
+            {{ $item['nombre'] }}
         </a>
     </li>
 @else
     <li class="menu">
         <a href="{{ Route::has($item['url_destino']) ? route($item['url_destino']) : '#' }}" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-            <i class="nav-icon fas {{ $item['icono'] }} {{ $item['padre'] == 0 ? 'text-md': 'text-xs'}}"></i>
-            <span>
-                {{ $item['nombre'] }}
-            </span>
-            <i class="right fas fa-angle-left"></i>
+            <div class="">
+                <i class="nav-icon fas {{ $item['icono'] }}"></i>
+                <span>
+                    {{ $item['nombre'] }}
+                </span>
+            </div>
+            <div>
+                <i class="right fas fa-angle-down"></i>
+            </div>
         </a>
-
-        <!-- Agregar un identificador único al atributo "id" del elemento <ul> -->
-        <ul class="collapse submenu list-unstyled" id="submenu-{{ $item['id'] }}" data-parent="#accordionExample">
+        <ul class="collapse submenu list-unstyled" id="{{ $item['nombre'] }}" data-parent="#accordionExample">
             @foreach ($item['submenu'] as $submenu)
                 @if ($submenu['submenu'] == [])
                     <li>
                         @if ($submenu['emergente'])
                             <form id="form-menu-{{ $submenu['id'] }}" action="{{ Route::has($submenu['url_destino']) ? route($submenu['url_destino']) : '#' }}" method="GET" target="_blank">
                                 @csrf
-                                <a href="#" onclick="$('#form-menu-{{ $submenu['id'] }}').submit();">
-                                    <p>
-                                        {{ $submenu['nombre'] }}
-                                    </p>
+                                <a href="#" onclick="$('#form-menu-{{ $submenu['id'] }}').submit();" class="dropdown-item">
+                                    {{ $submenu['nombre'] }}
                                 </a>
                             </form>
                         @else
-                            <a href="{{ Route::has($submenu['url_destino']) ? route($submenu['url_destino']) : '#' }}">
-                                <p>
-                                    {{ $submenu['nombre'] }}
-                                </p>
+                            <a href="{{ Route::has($submenu['url_destino']) ? route($submenu['url_destino']) : '#' }}" class="dropdown-item">
+                                {{ $submenu['nombre'] }}
                             </a>
                         @endif
                     </li>
                 @else
-                    <!-- Utilizar la plantilla del submenú de forma recursiva -->
                     @include('layouts.menu-item', ['item' => $submenu])
                 @endif
             @endforeach
