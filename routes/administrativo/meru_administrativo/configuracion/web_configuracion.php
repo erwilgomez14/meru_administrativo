@@ -11,6 +11,7 @@ use  App\Http\Controllers\Administrativo\Meru_Administrativo\Configuracion\Confi
 use  App\Http\Controllers\Administrativo\Meru_Administrativo\Configuracion\Configuracion\DescuentoController;
 use App\Http\Controllers\Administrativo\Meru_Administrativo\Configuracion\Configuracion\GerenciaController;
 use App\Http\Controllers\Administrativo\Meru_Administrativo\Configuracion\Configuracion\UbicacionGeograficaController;
+use App\Http\Controllers\Administrativo\Meru_Administrativo\Configuracion\Configuracion\UsuarioController;
 
 Route::middleware(['auth', 'periodo-fiscal'])
 	->prefix('configuracion')
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'periodo-fiscal'])
                 Route::resource('unidadtributaria',  UnidadTributariaController ::class)->except('destroy');
                 Route::resource('descuento',  DescuentoController ::class)->except('destroy');
                 Route::resource('ubicacion_geografica', UbicacionGeograficaController::class)->except('destroy');
+                Route::resource('usuario', UsuarioController::class)->except('destroy');
 				Route::controller(UbicacionGeograficaController::class)
 					->as('ubicacion_geografica.')
 					->group(function() {
