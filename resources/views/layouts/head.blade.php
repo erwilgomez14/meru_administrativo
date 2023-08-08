@@ -27,4 +27,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('plugins/table/datatable/dt-global_style.css')}}">
     <!-- END PAGE LEVEL STYLES -->
 
+    <link href="{{ asset('assets/css/users/user-profile.css')}}" rel="stylesheet" type="text/css" />
+
 </head>
