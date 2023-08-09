@@ -11,6 +11,19 @@
             <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
 
                 <div class="row">
+
+                    @if (session('status'))
+                        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <strong>{{ session('status') }}</strong>
+                        </div>
+
+                        <script>
+                            $(".alert").alert();
+                        </script>
+                    @endif
                     <div
                         class="col-xl-8 col-lg-7 col-md-7 col-sm-7 text-sm-left text-center layout-spacing align-self-center">
                         <div class="d-flex justify-content-sm-start justify-content-center">
@@ -37,6 +50,17 @@
             toastr[param['type']](param['message']);
         });
     </script>
+
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Éxito',
+                text: '{{ session('success') }}',
+                timer: 3000 // Cambia el tiempo en milisegundos que se mostrará el mensaje
+            });
+        </script>
+    @endif
 @endsection
 
 

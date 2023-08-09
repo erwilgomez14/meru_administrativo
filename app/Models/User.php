@@ -18,6 +18,8 @@ class User extends Authenticatable
 
     protected $table = 'usuarios';
 
+    // protected $time
+    public $timestamps = false;
     public function menus()
     {
         // return $this->belongsToMany('App\Models\Menu');
