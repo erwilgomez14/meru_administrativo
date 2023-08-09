@@ -58,7 +58,7 @@ class GerenciaIndex extends Component
                 ['name' => 'Centro de Costo', 'align' => 'center', 'sort' => 'centro_costo', 'width' => '12%'],
                 ['name' => 'Nombre Jefe', 'align' => 'center', 'sort' => 'nom_jefe', 'width' => '24%'],
                 ['name' => 'Nomenclatura', 'align' => 'center', 'sort' => 'nomenclatura', 'width' => '10%'],
-                'Acción'
+                ['name' => 'Acción'], 
             ],
             'gerencias' => Gerencia::query()
                 ->where('des_ger', 'ilike', '%'.$this->search.'%')
@@ -66,7 +66,9 @@ class GerenciaIndex extends Component
                 ->orWhere('nom_jefe', 'ilike', '%'.$this->search.'%')
                 ->orWhere('nomenclatura', 'ilike', '%'.$this->search.'%')
                 ->orderBy($this->sort, $this->direction)
-                ->paginate($this->paginate)  
+                ->paginate($this->paginate), 
         ]);
+        
+
     }
 }
