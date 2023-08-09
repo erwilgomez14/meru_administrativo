@@ -8,9 +8,9 @@
                             <a href="{{ route('configuracion.control.userrol.show', $userItem->id) }}">
                             {{ $userItem->id}}
                         </td>
-                        <x-td  >{{ $userItem->name}}</x-td>
+                        <x-td  >{{ $userItem->nombre}}</x-td>
                         <x-td >{{ $userItem->cedula }} </x-td>
-                        <x-td >{{ $userItem->email }} </x-td>
+                        <x-td >{{ $userItem->usuario}} </x-td>
                         <td class="text-center" style="vertical-align: middle;">
                             <a href="{{ route('configuracion.control.userrol.edit', $userItem->id) }}" type="button" aria-label="Left Align" data-toggle="tooltip" data-placement="left" title="Editar">
                                 <span class="fas fa-edit" aria-hidden="true"></span>

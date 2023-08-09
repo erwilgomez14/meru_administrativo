@@ -6,6 +6,7 @@ use App\Models\Administrativo\Meru_Administrativo\Configuracion\Permiso;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
+
 class RolPermisoComponent extends Component
 {   public $selectedRoles = [];
     public $selectedModuloId;
@@ -32,11 +33,12 @@ class RolPermisoComponent extends Component
                         ->pluck('nombre','id');
     }
 
+
     public function update()
     {
         try {
 
-             if (count($this->selectedRoles) >0){
+             if (count($this->selectedRoles) >=0){
                 $newPermissions = Permiso::where('modulo_id', '>=', $this->permiso[0]->modulo_id)
                                 ->whereIn('id',$this->selectedRoles)
                                 ->get();
@@ -51,7 +53,7 @@ class RolPermisoComponent extends Component
                 return redirect()->back()->withInput();
              }
        }catch (\Exception $e) {
-           flash()->addError('Transacci&oacute;n Fallida: '.Str::limit($e, 200));
+           flash()->Error('Transacci&oacute;n Fallida: '.Str::limit($e, 200));
            return redirect()->back()->withInput();
         }
 
@@ -62,7 +64,7 @@ class RolPermisoComponent extends Component
                                 ->where('modulo_id', $this->selectedModuloId)
                                 ->pluck('id');
 
-        $this->permiso= Permiso::query()
+        $this->permiso = Permiso::query()
         ->where('status', '1')
         ->where('modulo_id', $this->selectedModuloId)
         ->orderBy('name')

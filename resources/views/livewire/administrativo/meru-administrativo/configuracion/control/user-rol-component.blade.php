@@ -11,15 +11,15 @@
 
         <x-field class="form-group col-4">
             <x-label for="id">{{ __('Nombre') }}</x-label>
-            <x-input name="id" class="form-control-sm" value="{{ old('id', $userrol->name) }}" readonly/>
+            <x-input name="id" class="form-control-sm" value="{{ old('id', $userrol->nombre) }}" readonly/>
         </x-field>
         <x-field class="form-group col-2">
             <x-label for="id">{{ __('Cédula') }}</x-label>
             <x-input name="id" class="form-control-sm" value="{{ old('id', $userrol->cedula) }}" readonly/>
         </x-field>
         <x-field class="form-group col-5">
-            <x-label for="id">{{ __('Email') }}</x-label>
-            <x-input name="id" class="form-control-sm" value="{{ old('id', $userrol->email) }}" readonly/>
+            <x-label for="id">{{ __('Usuario') }}</x-label>
+            <x-input name="id" class="form-control-sm" value="{{ old('id', $userrol->usuario) }}" readonly/>
         </x-field>
     </div>
     <div class="dropdown-divider col-12" style="border-color:#84b7e0 !important; padding-bottom: 20px !important;"></div>

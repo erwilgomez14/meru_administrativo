@@ -48,7 +48,7 @@ class UserRolComponent extends Component
                 return redirect()->back()->withInput();
              }
        }catch (\Exception $e) {
-           flash()->addError('Transacci&oacute;n Fallida: '.Str::limit($e, 200));
+           flash()->Error('Transacci&oacute;n Fallida: '.Str::limit($e, 200));
            return redirect()->back()->withInput();
         }
 

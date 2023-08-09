@@ -35,17 +35,16 @@ class UserRolIndexComponent extends Component
         return view('livewire.administrativo.meru-administrativo.configuracion.control.user-rol-index-component',[
             'headers' => [
                 ['name' => 'ID', 'align' => 'center', 'sort' => 'id'],
-                ['name' => 'Nombre', 'align' => 'center', 'sort' => 'name'],
+                ['name' => 'Nombre', 'align' => 'center', 'sort' => 'nombre'],
                 ['name' => 'Cédula', 'align' => 'center', 'sort' => 'estado'],
-                ['name' => 'Email', 'align' => 'center', 'sort' => 'estado'],
+                ['name' => 'usuario', 'align' => 'center', 'sort' => 'estado'],
                 'Acción'
             ],
             'user' => User::query()
                           ->where('id', 'LIKE', '%'.$this->search.'%')
-                          ->orWhere('name','LIKE','%'.($this->search).'%')
+                          ->orWhere('nombre','LIKE','%'.($this->search).'%')
                           ->orWhere('cedula','LIKE','%'.($this->search).'%')
-                          ->orWhere('email','LIKE','%'.($this->search).'%')
-                          ->orderBy($this->sort, $this->direction)
+                          ->orWhere('usuario','LIKE','%'.($this->search).'%')
                           ->paginate($this->paginate)
       ]);
     }
