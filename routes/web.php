@@ -28,7 +28,6 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::get('/intermediate', 'IntermediateController@showLoader')->name('intermediate');
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
