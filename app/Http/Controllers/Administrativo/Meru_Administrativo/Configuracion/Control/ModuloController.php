@@ -9,6 +9,9 @@ use Illuminate\Support\Str;
 use Codedge\Fpdf\Fpdf\Fpdf;
 use App\Traits\ReportFpdf;
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
+use Illuminate\Http\Request;
+
 class ModuloController extends Controller
 {  use ReportFpdf;
 
@@ -25,19 +28,24 @@ class ModuloController extends Controller
         return view('administrativo.meru_administrativo.configuracion.control.modulo.create', compact('modulo'));
     }
 
-    public function store(ModuloRequest $request)
+    public function store(Request $request)
     {
-         //
-         try {
+        // dd($request);
+        $request->validate([
+            
+        ]);
 
-            Modulo::create($request->validated() + ['codigo' =>  $request->nombre]);
-            alert()->success('¡Éxito!','Modulo Creado Exitosamente.');
-            return redirect()->route('configuracion.control.modulo.index');
+        $menu = new Menu;
+        $menu->nombre = Str::upper($request->nombre);
+        $menu->padre = 0;
+        $correlativoOrden = Menu::where('padre', 0)->orderBy('orden', 'desc')->first();
+        $menu->orden = $correlativoOrden->orden + 1; 
+        $menu->activo = true; 
+        $menu->modulo = Str::lower($request->nombre);
+        $menu->id_aplicacion = 'meru'; 
+        $menu->descripcion = $request->descripcion; 
 
-        } catch(\Illuminate\Database\QueryException $e){
-            alert()->error('Transacci&oacute;n Fallida: ',Str::limit($e->getMessage(), 120));
-            return redirect()->back()->withInput();
-        }
+
     }
 
     public function show(Modulo $modulo)

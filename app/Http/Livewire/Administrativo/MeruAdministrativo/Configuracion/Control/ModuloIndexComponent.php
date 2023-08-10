@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Administrativo\MeruAdministrativo\Configuracion\Control;
 use App\Models\Administrativo\Meru_Administrativo\Configuracion\Modulo;
+use App\Models\Menu;
 use App\Traits\WithSorting;
 use Livewire\WithPagination;
 use Livewire\Component;
@@ -41,14 +42,9 @@ class ModuloIndexComponent extends Component
             ['name' => 'ID', 'align' => 'center', 'sort' => 'id'],
             ['name' => 'Nombre', 'align' => 'center', 'sort' => 'name'],
             ['name' => 'Estado', 'align' => 'center', 'sort' => 'estado'],
-            'Acción'
+            ['name' => 'Acción']
         ],
-        'modulo' =>  Modulo::query()
-                            ->whereNull('deleted_at')
-                            ->where('id', 'LIKE', '%'.$this->search.'%')
-                            ->orWhere('nombre','LIKE','%'.($this->search).'%')
-                            ->orderBy($this->sort, $this->direction)
-                            ->paginate($this->paginate)
+        'modulo' =>  Menu::where('padre', 0)->get()
    ]);
     }
 }
