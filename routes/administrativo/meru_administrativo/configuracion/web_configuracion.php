@@ -29,6 +29,8 @@ Route::middleware(['auth', 'periodo-fiscal'])
                 Route::resource('descuento',  DescuentoController::class)->except('destroy');
                 Route::resource('ubicacion_geografica', UbicacionGeograficaController::class)->except('destroy');
                 Route::post('usuarioBuscar/{cedula}', [UsuarioController::class, 'usuarioBuscar'])->name('buscarUsuario');
+                Route::post('usuario/{id}/cambiarEstado', [UsuarioController::class, 'cambiarEstado'])->name('cambiarEstado');
+                Route::post('usuario/{id}/cambiarAnofiscal', [UsuarioController::class, 'cambiarAnofiscal'])->name('cambiarAnofiscal');
                 Route::resource('usuario', UsuarioController::class);
                 Route::controller(UbicacionGeograficaController::class)
                     ->as('ubicacion_geografica.')

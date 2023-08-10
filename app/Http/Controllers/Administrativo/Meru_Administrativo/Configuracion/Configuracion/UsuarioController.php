@@ -58,7 +58,7 @@ class UsuarioController extends Controller
         if ($request->telefono == null) {
             $usuario->telf = $request->celular;
         } else {
-            $usuario->telf = $request->telefono;            
+            $usuario->telf = $request->telefono;
         }
 
         $usuario->correo_gte = $request->emailge;
@@ -84,7 +84,7 @@ class UsuarioController extends Controller
 
         $usuario->save();
 
-        return redirect()->route('configuracion.configuracion.usuario.index')->with('status', 'Usuario: '.$usuario->id. ' Registrados Satisfactoriamente');
+        return redirect()->route('configuracion.configuracion.usuario.index')->with('status', 'Usuario: ' . $usuario->id . ' Registrados Satisfactoriamente');
     }
 
     /**
@@ -134,6 +134,7 @@ class UsuarioController extends Controller
 
     public function usuarioBuscar(Request $request)
     {
+        // dd($request);
         if ($request->cedula == null) {
             $error = 'Debe ingresar un numero de cedula valido';
             return response()->json(['error' => $error], 400); // 400: Bad Request
@@ -144,8 +145,13 @@ class UsuarioController extends Controller
 
         if ($userRH && $userRH->idstatus == 1) {
             $userAD = User::where('cedula', $userRH->cedula)->first();
+            //dd($userAD);
             if ($userAD && $userAD->status == 1) {
                 $error = 'El usuario: ' . $userAD->nombre . ' ya se encuentra registrado y activo';
+                return response()->json(['error' => $error], 400); // 400: Bad Request
+            }
+            if ($userAD && $userAD->status == 0) {
+                $error = 'El usuario: ' . $userAD->nombre . ' ya se encuentra registrado pero no esta activo';
                 return response()->json(['error' => $error], 400); // 400: Bad Request
             }
             //dd($userRH);
@@ -182,5 +188,56 @@ class UsuarioController extends Controller
             $error = 'Usuario no existe en Recursos humanos';
             return response()->json(['error' => $error], 400); // 400: Bad Request
         }
+    }
+
+    public function cambiarEstado(Request $request, $id)
+    {
+        // dd($request);
+        $user = User::findOrFail($id);
+
+        // dd($user);
+
+        if ($user->status == 0) {
+            $user->status = 1;
+            $user->save();
+            $status = $user->status;
+
+            return response()->json(['message' => 'Estado cambiado ha: Activo exitosamente','user' => $status]);
+        }else {
+            // $msg = 'Inactivo';
+            $user->status = 0;
+            $user->save();
+            $status = $user->status;
+            $error = 'Estado cambiado ha: Inactivo exitosamente';
+            return response()->json(['error' => $error,'user' => $status], 400);
+        }
+
+        // return response()->json(['message' => 'Estado cambiado ha: ' . $msg . ' exitosamente']);
+    }
+
+    public function cambiarAnofiscal(Request $request, $id)
+    {
+        // dd($request);
+        $user = User::findOrFail($id);
+
+        //dd($user);
+
+        if ($user->ano_fiscal == 0) {
+            $user->ano_fiscal = 1;
+            $user->save();
+            $dualidad = $user->ano_fiscal;
+
+            return response()->json(['message' => 'Dualidad Activada', 'user' => $dualidad]);
+        }else {
+            // $msg = 'Inactivo';
+            $user->ano_fiscal = 0;
+            $user->save();
+            $error = 'Dualidad Desactivada';
+            $dualidad = $user->ano_fiscal;
+
+            return response()->json(['error' => $error, 'user' => $dualidad], 400);
+        }
+
+        // return response()->json(['message' => 'Estado cambiado ha: ' . $msg . ' exitosamente']);
     }
 }
