@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('layouts.head')
+@yield('styles')
 
 <body>
     <!-- BEGIN LOADER -->
@@ -40,5 +41,9 @@
     <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
     @include('layouts.functions')
 
+    @yield('scripts')
+
+
 </body>
+
 </html>

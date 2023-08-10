@@ -29,5 +29,6 @@
     <!-- END PAGE LEVEL STYLES -->
 
     <link href="{{ asset('assets/css/users/user-profile.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/forms/switches.css')}}">
 
 </head>
