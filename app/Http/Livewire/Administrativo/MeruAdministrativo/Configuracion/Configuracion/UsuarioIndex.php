@@ -13,7 +13,7 @@ class UsuarioIndex extends Component
 
     protected $paginationTheme = 'bootstrap';
     public $search             = '';
-    public $paginate           = '10';
+    public $paginate           = '';
     
     public function mount()
     {
@@ -46,16 +46,17 @@ class UsuarioIndex extends Component
                 ['name' => 'Nombre', 'align' => 'center', 'sort' => 'nombre', 'width' => '40%'],
                 ['name' => 'Usuario', 'align' => 'center', 'sort' => 'usuario', 'width' => '24%'],
                 // ['name' => 'Nomenclatura', 'align' => 'center', 'sort' => 'nomenclatura', 'width' => '10%'],
-                'Acción'
+                ['name' => 'Año Fiscal', 'align' => 'center', 'sort' => 'usuario', 'width' => '12%'], 
+                ['name' => 'Activar/Inactivar', 'align' => 'center', 'sort' => 'usuario', 'width' => '12%'], 
             ],
-            'usuarios' => User::query()
-                ->where('usuario', 'ilike', '%'.$this->search.'%')
-                ->orWhere('nombre', 'ilike', $this->search.'%')
-                ->orWhere('cedula', 'ilike', '%'.$this->search.'%')
-                ->orWhere('id', 'ilike', '%'.$this->search.'%')
-                ->orderBy($this->sort)
+            'usuarios' => User::all()
+                // ->where('usuario', 'ilike', '%'.$this->search.'%')
+                // ->orWhere('nombre', 'ilike', $this->search.'%')
+                // ->orWhere('cedula', 'ilike', '%'.$this->search.'%')
+                // ->orWhere('id', 'ilike', '%'.$this->search.'%')
+                // ->orderBy($this->sort)
                 // ->orderBy($this->sort, $this->direction)
-                ->paginate($this->paginate)  
+                // ->paginate($this->paginate)  
         ]);
     }
 }
