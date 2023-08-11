@@ -1,7 +1,7 @@
 
 <x-card>
     <x-slot name="header">
-        <h3 class="card-title text-bold">Modulo</h3>
+        <h3 class="card-title text-bold">Menú</h3>
     </x-slot>
     <x-slot name="body">
         <div class="row col-12">
@@ -13,7 +13,7 @@
                 <x-label for="nombre">Descripción</x-label>
                 <x-input  name="nombre" class="form-control-sm {{ $errors->has('nombre') ? 'is-invalid' : '' }}" placeholder="Ingrese Descripción" value="{{ old('name', $modulo->nombre) }}"  />
                 <div class="invalid-feedback">
-                    @error('name') {{ $message }} @enderror
+                    @error('name') {{ $message }}hola @enderror
                 </div>
             </x-field>
             <x-field class="form-group col-2 ">

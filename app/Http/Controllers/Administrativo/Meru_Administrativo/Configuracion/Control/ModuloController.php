@@ -36,6 +36,11 @@ class ModuloController extends Controller
         ]);
 
         $menu = new Menu;
+        
+        
+        $correlativoId = Menu::where('id', '>', 0)->orderBy('id', 'desc')->first();
+        $menu->id = $correlativoId->id + 1;
+          
         $menu->nombre = Str::upper($request->nombre);
         $menu->padre = 0;
         $correlativoOrden = Menu::where('padre', 0)->orderBy('orden', 'desc')->first();
@@ -45,6 +50,12 @@ class ModuloController extends Controller
         $menu->id_aplicacion = 'meru'; 
         $menu->descripcion = $request->descripcion; 
 
+        // dd($menu);
+        // return $menu;
+
+         $menu->save();
+
+         return redirect()->route('configuracion.control.modulo.index')/* ->with('status', 'Categoria creada satisfactoriamente') */;
 
     }
 

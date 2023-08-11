@@ -6,7 +6,7 @@
 @section('title')
     <li class="breadcrumb-item text-bold"><a href="{{ route('configuracion.control.modulo.index') }}">Pagina Principal</a>
     </li>
-    <li class="breadcrumb-item active text-bold">Registrar Modulo</li>
+    <li class="breadcrumb-item active text-bold">Registrar Menú</li>
 @endsection
 
 @section('content')

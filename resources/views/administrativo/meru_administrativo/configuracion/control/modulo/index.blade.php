@@ -5,7 +5,7 @@
 
 @section('title')
     <li class="breadcrumb-item text-bold"><a href="{{ route('home') }}">Página principal</a></li>
-    <li class="breadcrumb-item active text-bold">Listar Modulo</li>
+    <li class="breadcrumb-item active text-bold">Listar Menú</li>
 
     {{-- <li class="breadcrumb-item"><a href="/home">Dashboard</a></li>
     <li class="breadcrumb-item active" aria-current="page"><span>Usuarios</span></li> --}}
