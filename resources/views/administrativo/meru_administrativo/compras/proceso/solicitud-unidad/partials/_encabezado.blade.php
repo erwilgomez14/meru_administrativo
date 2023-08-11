@@ -1,8 +1,9 @@
 <x-card class="card-secondary col-12 mt-3">
+<div class="card" >
+
     <x-slot:body>
         <h5 class="text-bold" >Identificación de la Solicitud</h5>
         <hr>
-
         <div class="row d-flex justify-content-between">
             <x-field class="col-2">
                 <x-label for="ano_pro">Año</x-label>
@@ -428,5 +429,7 @@
             />
         </x-field>
     </x-slot>
+</div>
+
 </x-card>
 

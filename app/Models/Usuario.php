@@ -18,4 +18,6 @@ class Usuario extends Authenticatable
     protected $primaryKey = 'idusuario';
     protected $connection = 'rrhh';
     protected $table = 'acceso.usuarios';
+
+  
 }

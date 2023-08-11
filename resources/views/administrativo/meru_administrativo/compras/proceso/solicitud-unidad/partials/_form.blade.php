@@ -7,50 +7,50 @@
     <div x-data="form()">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab1'" :class="{'active' : tab === 'tab1'}" class="nav-link" data-toggle="tab">Encabezado</button>
+                <a class="nav-link active" data-toggle="tab" href="#tab1-content">Encabezado</a>
             </li>
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab2'" :class="{'active' : tab === 'tab2'}" class="nav-link" data-toggle="tab">Detalle</button>
+                <a class="nav-link" data-toggle="tab" href="#tab2-content">Detalle</a>
             </li>
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab3'" :class="{'active' : tab === 'tab3'}" class="nav-link" data-toggle="tab">Producto</button>
+                <a class="nav-link" data-toggle="tab" href="#tab3-content">Producto</a>
             </li>
             <div x-show="grupo === 'SV'">
                 <li class="nav-item">
-                    <button @click.prevent="tab = 'tab4'" :class="{'active' : tab === 'tab4'}" class="nav-link" data-toggle="tab">Bienes/Vehiculos</button>
+                    <a class="nav-link" data-toggle="tab" href="#tab4-content">Bienes/Vehiculos</a>
                 </li>
             </div>
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab5'" :class="{'active' : tab === 'tab5'}" class="nav-link" data-toggle="tab">Contratante</button>
+                <a class="nav-link" data-toggle="tab" href="#tab5-content">Contratante</a>
             </li>
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab6'" :class="{'active' : tab === 'tab6'}" class="nav-link" data-toggle="tab">Anulación</button>
+                <a class="nav-link" data-toggle="tab" href="#tab6-content">Anulación</a>
             </li>
             <li class="nav-item">
-                <button @click.prevent="tab = 'tab7'" :class="{'active' : tab === 'tab7'}" class="nav-link" data-toggle="tab">Doc. Asociados</button>
+                <a class="nav-link" data-toggle="tab" href="#tab7-content">Doc. Asociados</a>
             </li>
         </ul>
 
         <div class="tab-content">
-            <div x-show="tab === 'tab1'" :class="{'show active' : tab === 'tab1'}" class="tab-pane fade">
+            <div class="tab-pane fade show active" id="tab1-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_encabezado')
             </div>
-            <div x-show="tab === 'tab2'" :class="{'show active' : tab === 'tab2'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab2-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_detalle')
             </div>
-            <div x-show="tab === 'tab3'" :class="{'show active' : tab === 'tab3'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab3-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_producto')
             </div>
-            <div x-show="tab === 'tab4'" :class="{'show active' : tab === 'tab4'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab4-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_bien-vehiculo')
             </div>
-            <div x-show="tab === 'tab5'" :class="{'show active' : tab === 'tab5'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab5-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_contratante')
             </div>
-            <div x-show="tab === 'tab6'" :class="{'show active' : tab === 'tab6'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab6-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_anulacion')
             </div>
-            <div x-show="tab === 'tab7'" :class="{'show active' : tab === 'tab7'}" class="tab-pane fade">
+            <div class="tab-pane fade" id="tab7-content">
                 @include('administrativo/meru_administrativo/compras/proceso/solicitud-unidad/partials/_doc-asociados')
             </div>
         </div>
@@ -59,7 +59,6 @@
 
 <x-slot:footer>
     @if ($accion == 'nuevo')
-        {{--  <x-input class="float-right" type="submit" value="Guardar" />  --}}
         <button class="btn btn-primary float-right" onclick="confirmation(event, '¿Está seguro de CREAR la Solicitud?')">Guardar</button>
     @endif
 
@@ -261,7 +260,7 @@
                 },
 
                 asignarCentroCosto(){
-                    var gerencia_usuario = {{ !is_null(auth()->user()->usuario->gerencia->cod_ger) }}
+                    var gerencia_usuario = {{ !is_null(auth()->user()->gerencia->cod_ger) }}
                     var bandera = false
                     var credito_adicional = 'NO'
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Administrativo\Meru_Administrativo\Configuracion\Gerencia;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -24,5 +25,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Menu::class, 'usuario_menu_rol', 'id_usuario', 'id_menu');
 
     }
+
+    public function gerencia()
+	{
+		return $this->belongsTo(Gerencia::class, 'cod_ger', 'cod_ger');
+	}
 
 }

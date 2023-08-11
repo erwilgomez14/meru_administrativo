@@ -3,6 +3,7 @@
 namespace App\Models\Administrativo\Meru_Administrativo\Compras;
 
 use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 use Awobaz\Compoships\Compoships;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -59,16 +60,31 @@ class SolicitudUnidad extends Model
     protected function fecEmi() : Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null,
+            get: function($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (InvalidFormatException $e) {
+                    // Aquí puedes registrar el error, lanzar una excepción personalizada, etc.
+                    return null; // Por ejemplo, puedes retornar null si hay un error.
+                }
+            }
         );
     }
 
     protected function fecRec() : Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null,
+            get: function($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (InvalidFormatException $e) {
+                    // Puedes manejar el error aquí. Por ejemplo, retornando null o registrando el error.
+                    return null;
+                }
+            }
         );
     }
+    
 
     protected function fecComCont() : Attribute
     {
@@ -98,19 +114,37 @@ class SolicitudUnidad extends Model
         );
     }
 
+
     protected function fecPcom() : Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null,
+            get: function($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (InvalidFormatException $e) {
+                    // Aquí puedes manejar el error, como retornar null, registrar el error, etc.
+                    return null;
+                }
+            }
         );
     }
+    
 
     protected function fecCom() : Attribute
     {
-        return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null,
+        return new Attribute(
+            function($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (\Exception $e) {
+                    // puedes manejar el error aquí, por ejemplo:
+                    return null;  // o puedes registrar el error si es necesario
+                }
+            }
         );
     }
+    
+    
 
     protected function fecDevCont() : Attribute
     {
@@ -129,14 +163,28 @@ class SolicitudUnidad extends Model
     protected function fecAut() : Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null,
+            get: function ($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (\Exception $e) {
+                    return null;
+                }
+            }
         );
     }
+    
+    
 
     protected function fecSta() : Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value ? Carbon::createFromFormat('d/m/Y H:i:s', $value)->format('Y-m-d H:i:s') : null,
+            get: function ($value) {
+                try {
+                    return $value ? Carbon::createFromFormat('d/m/Y', $value)->format('Y-m-d') : null;
+                } catch (\Exception $e) {
+                    return null;
+                }
+            }
         );
     }
 
