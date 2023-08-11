@@ -43,7 +43,7 @@
         </div>
 
      @endif
-</x-datatable>--}}
+</x-datatable>
 
 <div class="widget-content widget-content-area br-6">
     <div class="table-responsive mb-4 mt-4">

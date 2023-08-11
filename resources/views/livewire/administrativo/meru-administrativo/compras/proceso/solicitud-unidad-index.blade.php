@@ -5,13 +5,13 @@
             <x-table-headers class="py-2" :sortby="$sort" :order="$direction" :headers="$headers">
                 @foreach ($solicitudesUnidad as $solicitud)
                     <tr>
-                        <td align="left">{{ $solicitud->ano_pro }}</td>
-                        <td align="left">{{ $solicitud->nro_req }}</td>
-                        <td align="left">{{ $solicitud->grupo }}</td>
-                        <td align="left">{{ $solicitud->fec_emi }}</td>
-                        <td align="left">{{ $solicitud->gerencia->des_ger }}</td>
-                        <td align="left">{{ $solicitud->monto_tot }}</td>
-                        <td align="left">{{ $solicitud->estado->descripcion }}</td>
+                        <td align="left" c>{{ $solicitud->ano_pro }}</td>
+                        <td align="left" c>{{ $solicitud->nro_req }}</td>
+                        <td align="left" c>{{ $solicitud->grupo }}</td>
+                        <td align="left" c>{{ $solicitud->fec_emi }}</td>
+                        <td align="left" c>{{ $solicitud->gerencia->des_ger }}</td>
+                        <td align="left" c>{{ $solicitud->monto_tot }}</td>
+                        <td align="left" c>{{ $solicitud->estado->descripcion }}</td>
                         <td align="center">
                             {{--  Boton Ver Solicitud de Compra  --}}
                             <a href="{{ route('compras.proceso.solicitud_unidad.show', [$solicitud->ano_pro, $solicitud->grupo, $solicitud->nro_req]) }}" type="button" class="btn-sm" aria-label="Left Align" data-toggle="tooltip" data-placement="left" title="Ver Solicitud de Compra">
