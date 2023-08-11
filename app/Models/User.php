@@ -27,4 +27,10 @@ class User extends Authenticatable
 
     }
 
+    public function cargoxnivel()
+    {
+        return $this->hasOne(Cargos::class, 'codcargoxnivel', 'cargo');
+
+    }
+
 }

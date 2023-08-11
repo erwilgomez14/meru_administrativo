@@ -22,6 +22,10 @@
                             <x-button class="btn-success" href="{{ route('configuracion.configuracion.usuario.create') }}"
                                 title="Nuevo"><i class="fas fa-plus-circle"></i> Nuevo</x-button>
 
+                            <x-button href="{{ route('configuracion.configuracion.print_usuarios') }}" target="_blank"
+                                class="btn-primary" title="Generar PDF"><i class="fas fa-download"> Generar
+                                    PDF</i></i></x-button>
+
                         </div>
                     </div>
 
@@ -100,7 +104,7 @@
                             $(this).data('status', data.user);
                             const isChecked = data.user === '1';
                             $(this).find('input[type="checkbox"]').prop('checked', isChecked);
-                            
+
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',

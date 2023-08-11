@@ -31,6 +31,7 @@ Route::middleware(['auth', 'periodo-fiscal'])
                 Route::post('usuarioBuscar/{cedula}', [UsuarioController::class, 'usuarioBuscar'])->name('buscarUsuario');
                 Route::post('usuario/{id}/cambiarEstado', [UsuarioController::class, 'cambiarEstado'])->name('cambiarEstado');
                 Route::post('usuario/{id}/cambiarAnofiscal', [UsuarioController::class, 'cambiarAnofiscal'])->name('cambiarAnofiscal');
+                Route::get('print_usuarios', [UsuarioController::class, 'print_usuarios'])->name('print_usuarios');
                 Route::resource('usuario', UsuarioController::class);
                 Route::controller(UbicacionGeograficaController::class)
                     ->as('ubicacion_geografica.')

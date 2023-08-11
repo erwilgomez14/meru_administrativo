@@ -11,12 +11,18 @@ use App\Models\GerenciaADM;
 use App\Models\GerentexGerencia;
 use App\Models\User;
 use App\Models\Usuario;
+use App\Traits\ReporteDompdf;
+// use App\Traits\ReportFpdf;
 use Auth;
-use Date;
+// use Codedge\Fpdf\Fpdf\Fpdf;
 use Illuminate\Http\Request;
+// use Barryvdh\DomPDF\Facade as PDF;
+// use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+use PDF;
 
 class UsuarioController extends Controller
 {
+    use ReporteDompdf;
     /**
      * Display a listing of the resource.
      *
@@ -202,14 +208,14 @@ class UsuarioController extends Controller
             $user->save();
             $status = $user->status;
 
-            return response()->json(['message' => 'Estado cambiado ha: Activo exitosamente','user' => $status]);
-        }else {
+            return response()->json(['message' => 'Estado cambiado ha: Activo exitosamente', 'user' => $status]);
+        } else {
             // $msg = 'Inactivo';
             $user->status = 0;
             $user->save();
             $status = $user->status;
             $error = 'Estado cambiado ha: Inactivo exitosamente';
-            return response()->json(['error' => $error,'user' => $status], 400);
+            return response()->json(['error' => $error, 'user' => $status], 400);
         }
 
         // return response()->json(['message' => 'Estado cambiado ha: ' . $msg . ' exitosamente']);
@@ -228,7 +234,7 @@ class UsuarioController extends Controller
             $dualidad = $user->ano_fiscal;
 
             return response()->json(['message' => 'Dualidad Activada', 'user' => $dualidad]);
-        }else {
+        } else {
             // $msg = 'Inactivo';
             $user->ano_fiscal = 0;
             $user->save();
@@ -239,5 +245,50 @@ class UsuarioController extends Controller
         }
 
         // return response()->json(['message' => 'Estado cambiado ha: ' . $msg . ' exitosamente']);
+    }
+
+    public function print_usuarios()
+    {
+        $usuarios = User::where('status', 1)->get();
+        // dd($usuarios->cargoxnivel->descargoxnivel);
+        // $cargo = Cargos::where('');
+        $data = [];
+
+        foreach ($usuarios as $usuario) {
+            $descripcion = isset($usuario->cargoxnivel) ? $usuario->cargoxnivel->descargoxnivel : '';
+            // Agrega los valores que deseas a $datos
+            $data[] = [
+                'Cedula' => $usuario->cedula,
+                'Nombre' => $usuario->nombre,
+                'Usuario' => $usuario->usuario,
+                'Codigo del Cargo' => $usuario->cargo,
+                'Descripcion del Cargo' => $descripcion,
+                // Agrega más valores si es necesario
+            ];
+        }
+
+        $columnasReferencia = array_keys($data[0]);
+
+
+        // Título para la segunda columna
+        $tituloColumna2 = 'Listado de Usuarios Activos';
+        $altura = 75; //px
+
+        // $titulosColumnas = ['Cedula', 'Nombre', 'Usuario', 'Codigo del Cargo', 'Descripcion del Cargo']; // Cambia estos títulos según tus necesidades
+        $titulosColumnas = [
+            'Cedula' => '15%',  // Ejemplo de tamaño personalizado
+            'Nombre' => '30%',
+            'Usuario' => '15%',
+            'Codigo del Cargo' => '20%',
+            'Descripcion del Cargo' => '30%',
+        ];
+        // Generar el PDF utilizando el trait
+        $pdfContent = $this->generatePdf($data, $tituloColumna2, $altura, $titulosColumnas);
+
+        // Devolver el PDF como respuesta
+        return response($pdfContent, 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="example.pdf"',
+        ]);
     }
 }
