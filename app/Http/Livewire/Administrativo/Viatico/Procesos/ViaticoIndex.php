@@ -1,45 +1,19 @@
 <?php
 
-namespace App\Http\Livewire\Administrativo\MeruAdministrativo\Configuracion\Configuracion;
+namespace App\Http\Livewire\Viatico\Procesos;
 
 use Livewire\Component;
-use App\Traits\WithSorting;
-use Livewire\WithPagination;
-use App\Models\User;
 
-class UsuarioIndex extends Component
+class ViaticoIndex extends Component
 {
-    use WithPagination, WithSorting;
 
-    protected $paginationTheme = 'bootstrap';
-    public $search             = '';
-    public $paginate           = '';
 
-    public function mount()
-    {
-        $this->sort      = 'nombre';
-        $this->direction = 'cedula';
-    }
-
-    public function updatingSearch()
-    {
-        $this->resetPage();
-    }
-
-    public function updatedPaginate()
-    {
-        $this->resetPage();
-    }
-
-    public function order()
-    {
-
-    }
 
     public function render()
     {
-        //dd(User::all());
-        return view('livewire.administrativo.meru-administrativo.configuracion.configuracion.usuario-index', [
+        // return view('livewire.viatico.procesos.viatico-index');
+
+        return view('livewire.viatico.procesos.viatico-index', [
             'headers' => [
                 ['name' => 'ID', 'align' => 'center', 'sort' => 'id', 'width' => '6%'],
                 ['name' => 'Cedula', 'align' => 'center', 'sort' => 'cedula', 'width' => '12%'],
@@ -49,7 +23,7 @@ class UsuarioIndex extends Component
                 ['name' => 'Año Fiscal', 'align' => 'center', 'sort' => 'usuario', 'width' => '12%'],
                 ['name' => 'Activar/Inactivar', 'align' => 'center', 'sort' => 'usuario', 'width' => '12%'],
             ],
-            'usuarios' => User::all()
+            // 'usuarios' => User::all()
                 // ->where('usuario', 'ilike', '%'.$this->search.'%')
                 // ->orWhere('nombre', 'ilike', $this->search.'%')
                 // ->orWhere('cedula', 'ilike', '%'.$this->search.'%')
@@ -59,4 +33,11 @@ class UsuarioIndex extends Component
                 // ->paginate($this->paginate)
         ]);
     }
-}
+
+
+
+
+ }
+
+
+

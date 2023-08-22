@@ -620,21 +620,27 @@ select.form-control.form-custom {
   box-shadow: none; }
 
 /*      Default Buttons       */
-.btn-primary {
+/* .btn-primary {
   color: #fff !important;
   background-color: #1b55e2 !important;
-  border-color: #1b55e2; }
+  border-color: #1b55e2; } */
+
+  .btn-primary {
+    background-image: linear-gradient(to right, #2d7bac, #009cd1ab);
+    color: #fff;
+    border: 0px solid #a7d9f8;
+  }
   .btn-primary:hover, .btn-primary:focus {
     color: #fff !important;
-    background-color: #1b55e2;
+    background-color: #a7d9f8;
     box-shadow: none;
-    border-color: #1b55e2; }
+    border-color: #a7d9f8; }
   .btn-primary:active, .btn-primary.active {
-    background-color: #1b55e2;
-    border-top: 1px solid #1b55e2; }
+    background-color: #a7d9f8;
+    border-top: 1px solid #a7d9f8; }
   .btn-primary.disabled, .btn-primary.btn[disabled], .btn-primary:disabled {
-    background-color: #1b55e2;
-    border-color: #1b55e2;
+    background-color: #a7d9f8;
+    border-color: #a7d9f8;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none; }
@@ -1712,13 +1718,13 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   padding: 16px 12px;
   color: #fff; }
 
-/*  
+/*
     ==========================
-        Background Colors  
+        Background Colors
     ==========================
 */
-/*  
-    Default  
+/*
+    Default
 */
 .bg-primary {
   background-color: #1b55e2 !important;
@@ -1755,8 +1761,8 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   border-color: #3b3f5c;
   color: #fff; }
 
-/*  
-    Light Background  
+/*
+    Light Background
 */
 .bg-light-primary {
   background-color: #c2d5ff !important;
@@ -1793,7 +1799,7 @@ table .badge-success, table .badge-primary, table .badge-warning, table .badge-d
   border-color: #acb0c3;
   color: #fff; }
 
-/*  
+/*
     Progress Bar
 */
 .progress {

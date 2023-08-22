@@ -100,7 +100,7 @@
                             $(this).data('status', data.user);
                             const isChecked = data.user === '1';
                             $(this).find('input[type="checkbox"]').prop('checked', isChecked);
-                            
+
                             Swal.fire({
                                 icon: 'error',
                                 title: 'Error',

@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     @foreach ($headers as $header)
-                        <th>{{ $header['name'] }}</th>
+                        <th>{{ $header['name'] }}</th>s
                     @endforeach
                 </tr>
             </thead>
