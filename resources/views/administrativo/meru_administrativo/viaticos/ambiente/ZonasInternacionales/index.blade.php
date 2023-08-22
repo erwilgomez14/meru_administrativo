@@ -50,13 +50,7 @@
         </div>
     </div>
 
-<style>
-/*    .btn-primary {
-      background-image: linear-gradient(to right, #2d7bac, #00bfffab);
-      color: #00bfffab;
-      border: 1px solid #a7d9f8;
-    }*/
-  </style>
+
 
 @endsection
 
